@@ -5,23 +5,23 @@ import employees from "./employees.json";
 import Table from "./components/Table";
 
 function App() {
+
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState([]);
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+  React.useEffect(() => {
+    const results = employees.filter(emp => 
+      emp.name.toString().toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setSearchResults(results);
+    }, [searchTerm]);
+
+
   
-  // // Setting this.state.employees to the employees json array
-  // state = {
-  //   employees
-  // };
 
-// searchbyName() {
-//   const [searchTerm, setSearchTerm] = React.useState("");
-//   const [searchResults, setSearchResults] = React.useState([]);
-
-//   const handleChange = event => {
-//     setSearchTerm(event.target.value);
-//   }
-
-
-
-// }
 
 // //function to sort when column header is clicked
 // handleSort = ()=>{
@@ -33,11 +33,18 @@ function App() {
 //will also need e prevent default
        
 
-  // Map over this.state.employees and render a td component for each employee
-  // render() {
+  //return of components
     return (
       <Wrapper>
         <Title>Employees List</Title>
+        <div className="App">
+          <input
+            type="text"
+            placeholder="Search by employee name"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </div>
         <Table>
           <thead>
           <tr> 
@@ -50,7 +57,7 @@ function App() {
           </thead>
 
           <tbody>
-          {employees.map( emp =>(
+          {searchResults.map( emp =>(
             <tr key={emp.id}>
             <td></td>
             <td>{emp.name}</td>

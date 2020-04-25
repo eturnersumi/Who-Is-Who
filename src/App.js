@@ -1,20 +1,32 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import employees from "./employees.json";
 import Table from "./components/Table";
 
-class App extends Component {
+function App() {
   
-  // Setting this.state.employees to the employees json array
-  state = {
-    employees
-  };
+  // // Setting this.state.employees to the employees json array
+  // state = {
+  //   employees
+  // };
 
-//function to sort when column header is clicked
-handleSort = ()=>{
+// searchbyName() {
+//   const [searchTerm, setSearchTerm] = React.useState("");
+//   const [searchResults, setSearchResults] = React.useState([]);
 
-}
+//   const handleChange = event => {
+//     setSearchTerm(event.target.value);
+//   }
+
+
+
+// }
+
+// //function to sort when column header is clicked
+// handleSort = ()=>{
+
+// }
 
 
 //function to search dynamically "on change" as letters are typed
@@ -22,7 +34,7 @@ handleSort = ()=>{
        
 
   // Map over this.state.employees and render a td component for each employee
-  render() {
+  // render() {
     return (
       <Wrapper>
         <Title>Employees List</Title>
@@ -30,7 +42,7 @@ handleSort = ()=>{
           <thead>
           <tr> 
           <th>Image</th>
-          <th onClick={this.handleSort}>Name</th>
+          <th>Name</th>
           <th>Office</th>
           <th>Email</th>
           <th>Phone</th>
@@ -38,7 +50,7 @@ handleSort = ()=>{
           </thead>
 
           <tbody>
-          {this.state.employees.map( emp =>(
+          {employees.map( emp =>(
             <tr key={emp.id}>
             <td></td>
             <td>{emp.name}</td>
@@ -53,6 +65,6 @@ handleSort = ()=>{
       </Wrapper>
     );
   }
-}
+// }
 
 export default App;

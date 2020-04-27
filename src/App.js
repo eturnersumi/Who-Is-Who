@@ -1,17 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import employees from "./employees.json";
 import Table from "./components/Table";
+import { useTable, useSortBy } from 'react-table';
+
 
 function App() {
 
+
+
+  // function Table({ columns, data }) {
+  //   const {
+  //     getTableProps,
+  //     getTableBodyProps,
+  //     headerGroups,
+  //     rows,
+  //     prepareRow,
+  //   } = useTable({
+  //     columns,
+  //     data,
+  //   })
+  // }
+  
+  //set the needed state variables and partner actions
+  //state variables are searchTerm and Search Results
+  //actions are setSearchTerm and setSearchResults
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
 
+  //function to set the search term to input value
   const handleChange = event => {
     setSearchTerm(event.target.value);
   };
+
+  //useeffect to run after each render
   React.useEffect(() => {
     const results = employees.filter(emp => 
       emp.name.toString().toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,20 +43,7 @@ function App() {
     }, [searchTerm]);
 
 
-  
-
-
-// //function to sort when column header is clicked
-// handleSort = ()=>{
-
-// }
-
-
-//function to search dynamically "on change" as letters are typed
-//will also need e prevent default
-       
-
-  //return of components
+  //return/render of components
     return (
       <Wrapper>
         <Title>Employees List</Title>
@@ -45,33 +55,39 @@ function App() {
             onChange={handleChange}
           />
         </div>
-        <Table>
-          <thead>
-          <tr> 
-          <th>Image</th>
-          <th>Name</th>
-          <th>Office</th>
-          <th>Email</th>
-          <th>Phone</th>
-          </tr>
-          </thead>
-
-          <tbody>
-          {searchResults.map( emp =>(
-            <tr key={emp.id}>
-            <td></td>
-            <td>{emp.name}</td>
-            <td>{emp.location}</td>
-            <td>{emp.email}</td>
-            <td>{emp.phone}</td>
+        
+          <Table id="table">
+            <thead>
+            <tr> 
+            <th 
+            id="name">
+            <span>
+            🔽🔼             
+             </span>
+            Name
+            </th>
+            <th>Office</th>
+            <th>Email</th>
+            <th>Phone</th>
             </tr>
-       ))}
-          </tbody>
-        </Table>
+            </thead>
+
+            <tbody>
+            {searchResults.map( emp =>(
+              <tr key={emp.id}>
+              <td>{emp.name}</td>
+              <td>{emp.location}</td>
+              <td>{emp.email}</td>
+              <td>{emp.phone}</td>
+              </tr>
+            ))}
+            </tbody>
+          </Table>
+        
         
       </Wrapper>
     );
   }
-// }
+
 
 export default App;

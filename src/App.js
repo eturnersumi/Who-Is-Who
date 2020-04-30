@@ -3,7 +3,6 @@ import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
 import employees from "./employees.json";
 import Table from "./components/Table";
-import { useTable, useSortBy } from 'react-table';
 
 
 function App() {

@@ -6,4 +6,4 @@ User Story: "As a user, I want to be able to view my entire employee directory a
 DEMO: https://drive.google.com/open?id=1iF5ruxy97J5PCyJ0w8vfVRGUUIqNYMuX
 
 
-
+![landing](/images/appLanding.PNG)

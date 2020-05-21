@@ -1,5 +1,5 @@
 # Who-Is-Who
-A dynamic employee directory that empowers you to view non-sensitive employee data.
+A dynamic react powered employee directory that empowers you to view non-sensitive employee data.
 
 https://powerful-depths-46254.herokuapp.com/
 
